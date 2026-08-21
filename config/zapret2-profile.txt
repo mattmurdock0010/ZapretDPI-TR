@@ -1,0 +1,1 @@
+--payload="tls_client_hello" --lua-desync="multisplit:blob=fake_default_tls:tcp_seq=-3000:pos=2:nodrop:repeats=1" --new --lua-init="fake_default_tls=tls_mod(fake_default_tls,'rnd')" --lua-desync="wssize:wsize=1:scale=6" --payload="tls_client_hello" --lua-desync="multisplit:pos=10:seqovl=#fake_default_tls:seqovl_pattern=fake_default_tls"

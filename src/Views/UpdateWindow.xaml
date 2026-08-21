@@ -1,0 +1,168 @@
+<Window x:Class="ZapretDPI.Views.UpdateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
+        xmlns:md="clr-namespace:MdXaml;assembly=MdXaml"
+        Title="ZapretDPI-TR Güncelleme"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        Width="540"
+        Height="520"
+        FontFamily="Segoe UI, Montserrat, Arial">
+
+    <Border Background="#16181B" BorderBrush="#2A2E35" BorderThickness="1.5" CornerRadius="12" Padding="0" Margin="14">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="28" ShadowDepth="8" Opacity="0.75" />
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- 1. Title Bar -->
+            <Border Grid.Row="0" Background="#1A1D21" CornerRadius="11,11,0,0" Padding="14,0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border Width="22" Height="22" CornerRadius="11" Background="#2563EB" Margin="0,0,8,0">
+                            <emoji:TextBlock Text="🚀" FontSize="11" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                        </Border>
+                        <TextBlock x:Name="TxtTitleBar" Text="ZapretDPI-TR Güncelleme Yöneticisi" FontSize="12.5" FontWeight="SemiBold" Foreground="#F3F4F6" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <Button Grid.Column="1" Content="✕" Width="26" Height="26" Background="Transparent" Foreground="#9CA3AF" BorderThickness="0" Cursor="Hand" Click="BtnClose_Click" FontSize="11" Style="{StaticResource TitleBarCloseButtonStyle}" />
+                </Grid>
+            </Border>
+
+            <!-- 2. Header Banner -->
+            <Border Grid.Row="1" Background="#121417" Padding="20,16" BorderBrush="#2A2E35" BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Width="48" Height="48" CornerRadius="24" Margin="0,0,16,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#3B82F6" Offset="0"/>
+                                <GradientStop Color="#1D4ED8" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#3B82F6" BlurRadius="12" ShadowDepth="2" Opacity="0.4"/>
+                        </Border.Effect>
+                        <emoji:TextBlock Text="🚀" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                        <TextBlock x:Name="TxtHeaderTitle" Text="Yeni Bir Sürüm Yayınlandı!" FontSize="16" FontWeight="Bold" Foreground="#F9FAFB" Margin="0,0,0,6"/>
+                        <StackPanel Orientation="Horizontal">
+                            <Border Background="#2A2E35" CornerRadius="4" Padding="6,2" Margin="0,0,6,0">
+                                <TextBlock x:Name="TxtCurrentVer" Text="Mevcut: v1.0.0" FontSize="11" FontWeight="Medium" Foreground="#9CA3AF"/>
+                            </Border>
+                            <TextBlock Text="➔" FontSize="11" Foreground="#6B7280" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                            <Border Background="#1E3A8A" BorderBrush="#3B82F6" BorderThickness="1" CornerRadius="4" Padding="6,2">
+                                <TextBlock x:Name="TxtNewVer" Text="Yeni: v1.0.1" FontSize="11" FontWeight="Bold" Foreground="#60A5FA"/>
+                            </Border>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- 3. Release Notes Body -->
+            <Grid Grid.Row="2" Margin="20,14,20,12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                    <emoji:TextBlock Text="📋" FontSize="12" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="TxtNotesHeader" Text="Sürüm Notları &amp; Değişiklikler" FontSize="12" FontWeight="SemiBold" Foreground="#9CA3AF"/>
+                </StackPanel>
+
+                <Border Grid.Row="1" Background="#101215" BorderBrush="#2A2E35" BorderThickness="1" CornerRadius="8" Padding="14,12">
+                    <md:MarkdownScrollViewer x:Name="TxtReleaseNotes" Markdown="Sürüm notları yükleniyor..." FontFamily="Segoe UI">
+                        <md:MarkdownScrollViewer.MarkdownStyle>
+                            <Style TargetType="FlowDocument">
+                                <Setter Property="Foreground" Value="#D1D5DB" />
+                                <Setter Property="FontFamily" Value="Segoe UI" />
+                                <Style.Resources>
+                                    <Style TargetType="Paragraph" x:Key="Heading1">
+                                        <Setter Property="FontSize" Value="22" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="Foreground" Value="#F9FAFB" />
+                                        <Setter Property="Margin" Value="0,0,0,12" />
+                                    </Style>
+                                    <Style TargetType="Paragraph" x:Key="Heading2">
+                                        <Setter Property="FontSize" Value="18" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="Foreground" Value="#F9FAFB" />
+                                        <Setter Property="Margin" Value="0,12,0,8" />
+                                    </Style>
+                                    <Style TargetType="Paragraph" x:Key="Heading3">
+                                        <Setter Property="FontSize" Value="15" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="Foreground" Value="#E5E7EB" />
+                                        <Setter Property="Margin" Value="0,10,0,6" />
+                                    </Style>
+                                    <Style TargetType="Paragraph" x:Key="Heading4">
+                                        <Setter Property="FontSize" Value="13" />
+                                        <Setter Property="FontWeight" Value="Bold" />
+                                        <Setter Property="Foreground" Value="#E5E7EB" />
+                                    </Style>
+                                </Style.Resources>
+                            </Style>
+                        </md:MarkdownScrollViewer.MarkdownStyle>
+                    </md:MarkdownScrollViewer>
+                </Border>
+            </Grid>
+
+            <!-- 4. Progress Section (Visible during update) -->
+            <StackPanel x:Name="PnlProgress" Grid.Row="3" Margin="20,0,20,12" Visibility="Collapsed">
+                <Grid Margin="0,0,0,6">
+                    <TextBlock x:Name="TxtProgressStatus" Text="Güncelleme indiriliyor..." FontSize="11.5" FontWeight="SemiBold" Foreground="#60A5FA" HorizontalAlignment="Left"/>
+                    <TextBlock x:Name="TxtProgressPercent" Text="%0" FontSize="11.5" FontWeight="Bold" Foreground="#9CA3AF" HorizontalAlignment="Right"/>
+                </Grid>
+                <ProgressBar x:Name="PbDownload" Height="6" Minimum="0" Maximum="100" Value="0" Background="#2A2E35" Foreground="#3B82F6" BorderThickness="0">
+                    <ProgressBar.Clip>
+                        <RectangleGeometry Rect="0,0,500,6" RadiusX="3" RadiusY="3" />
+                    </ProgressBar.Clip>
+                </ProgressBar>
+            </StackPanel>
+
+            <!-- 5. Footer Buttons -->
+            <Border Grid.Row="4" Background="#121417" CornerRadius="0,0,11,11" Padding="18,14" BorderBrush="#2A2E35" BorderThickness="0,1,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button x:Name="BtnLater" Grid.Column="0" Content="Daha Sonra" Height="36" MinWidth="130" Margin="0,0,8,0" HorizontalAlignment="Stretch" Style="{StaticResource ModernButton}" Click="BtnLater_Click" />
+
+                    <Button x:Name="BtnUpdateNow" Grid.Column="1" Height="36" Margin="6,0,0,0" HorizontalAlignment="Stretch" Style="{StaticResource PrimaryButton}" Click="BtnUpdateNow_Click">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <emoji:TextBlock Text="⚡" FontSize="13" Margin="0,0,6,0" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="TxtBtnUpdate" Text="Şimdi Güncelle ve Yeniden Başlat" FontSize="12.5" FontWeight="Bold" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

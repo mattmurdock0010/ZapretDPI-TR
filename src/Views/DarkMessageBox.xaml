@@ -1,0 +1,80 @@
+<Window x:Class="ZapretDPI.Views.DarkMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ZapretDPI"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        SizeToContent="WidthAndHeight"
+        MinWidth="380"
+        MaxWidth="520"
+        FontFamily="Segoe UI, Montserrat, Arial">
+
+    <Border Background="#16181B" BorderBrush="#2A2E35" BorderThickness="1.5" CornerRadius="10" Padding="0" Margin="12">
+        <Border.Effect>
+            <DropShadowEffect Color="#000000" BlurRadius="24" ShadowDepth="6" Opacity="0.6" />
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+<Border Grid.Row="0" Background="#1A1D21" CornerRadius="9,9,0,0" Padding="14,0" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <Border x:Name="IconBadge" Width="20" Height="20" CornerRadius="10" Background="#3B82F6" Margin="0,0,8,0">
+                            <TextBlock x:Name="IconSymbol" Text="ℹ" Foreground="White" FontSize="11" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,-1,0,0" />
+                        </Border>
+                        <TextBlock x:Name="TxtTitle" Text="Bildirim" FontSize="13" FontWeight="Bold" Foreground="#F3F4F6" VerticalAlignment="Center" />
+                    </StackPanel>
+
+                    <Button Grid.Column="1" Content="✕" Width="24" Height="24" Background="Transparent" Foreground="#9CA3AF" BorderThickness="0" Cursor="Hand" Click="BtnClose_Click" FontSize="11">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border x:Name="b" Background="{TemplateBinding Background}" CornerRadius="4">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter TargetName="b" Property="Background" Value="#DC2626" />
+                                                    <Setter Property="Foreground" Value="White" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Border>
+
+<StackPanel Grid.Row="1" Margin="20,18,20,16">
+                <TextBlock x:Name="TxtMessage" Text="Mesaj içeriği buraya gelir." FontSize="13" Foreground="#E5E7EB" TextWrapping="Wrap" LineHeight="20" />
+            </StackPanel>
+
+<Border Grid.Row="2" Background="#121417" CornerRadius="0,0,9,9" Padding="16,14" BorderBrush="#2A2E35" BorderThickness="0,1,0,0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="BtnYes" Content="Evet" MinWidth="95" Height="34" Padding="14,0" Margin="0,0,8,0" Visibility="Collapsed" Style="{StaticResource PrimaryButton}" Click="BtnYes_Click" />
+                    <Button x:Name="BtnOk" Content="Tamam" MinWidth="95" Height="34" Padding="14,0" Margin="0,0,8,0" Style="{StaticResource PrimaryButton}" Click="BtnOk_Click" />
+                    <Button x:Name="BtnNo" Content="Hayır" MinWidth="95" Height="34" Padding="14,0" Margin="0,0,8,0" Visibility="Collapsed" Style="{StaticResource ModernButton}" Click="BtnNo_Click" />
+                    <Button x:Name="BtnCancel" Content="İptal" MinWidth="95" Height="34" Padding="14,0" Visibility="Collapsed" Style="{StaticResource ModernButton}" Click="BtnCancel_Click" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

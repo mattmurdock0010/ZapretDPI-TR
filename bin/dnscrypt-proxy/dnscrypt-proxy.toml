@@ -1,0 +1,34 @@
+server_names = ['adguard-dnscrypt', 'google', 'quad9', 'cloudflare']
+listen_addresses = ['127.0.0.1:53', '[::1]:53']
+max_clients = 250
+ipv4_servers = true
+ipv6_servers = false
+dnscrypt_servers = true
+doh_servers = true
+require_dnssec = false
+require_nolog = true
+require_nofilter = false
+fallback_resolvers = ['94.140.14.14:53', '8.8.8.8:53', '1.1.1.1:53']
+netprobe_address = '94.140.14.14:53'
+netprobe_timeout = 60
+block_unqualified = true
+block_undelegated = true
+cache = true
+cache_size = 4096
+cache_min_ttl = 2400
+cache_max_ttl = 86400
+cache_neg_min_ttl = 60
+cache_neg_max_ttl = 600
+
+[static]
+  [static.'adguard-dnscrypt']
+  stamp = 'sdns://AQMAAAAAAAAAETk0LjE0MC4xNC4xNDo1NDQzINErR_JS3PLCu_iZEIbq95zkSV2LFsigxDIuUso_OQhzIjIuZG5zY3J5cHQuZGVmYXVsdC5uczEuYWRndWFyZC5jb20'
+
+  [static.'google']
+  stamp = 'sdns://AgAAAAAAAAAABzguOC44LjgACmRucy5nb29nbGUKL2Rucy1xdWVyeQ'
+
+  [static.'quad9']
+  stamp = 'sdns://AgMAAAAAAAAABzkuOS45LjkADWRucy5xdWFkOS5uZXQKL2Rucy1xdWVyeQ'
+
+  [static.'cloudflare']
+  stamp = 'sdns://AgcAAAAAAAAABzEuMS4xLjEAEmRucy5jbG91ZGZsYXJlLmNvbQovZG5zLXF1ZXJ5'
