@@ -273,6 +273,7 @@
                         <Grid>
                             <ToggleButton x:Name="toggleButton" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Template="{StaticResource ComboBoxToggleButton}" />
                             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" HorizontalAlignment="Left" Margin="8,0,24,0" IsHitTestVisible="false" VerticalAlignment="Center" />
+                            <TextBox x:Name="PART_EditableTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8,0,24,0" Background="Transparent" Foreground="{TemplateBinding Foreground}" BorderThickness="0" FocusVisualStyle="{x:Null}" IsReadOnly="{TemplateBinding IsReadOnly}" Visibility="Collapsed" />
                             <Popup x:Name="PART_Popup" AllowsTransparency="true" IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Placement="Bottom" PopupAnimation="Slide">
                                 <Border x:Name="dropDownBorder" Background="{StaticResource SidebarBrush}" BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1" CornerRadius="6" MaxHeight="{TemplateBinding MaxDropDownHeight}" MinWidth="{Binding Path=ActualWidth, RelativeSource={RelativeSource TemplatedParent}}" Margin="0,4,0,0" Padding="4">
                                     <ScrollViewer x:Name="DropDownScrollViewer">
@@ -286,6 +287,13 @@
                                 </Border>
                             </Popup>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEditable" Value="True">
+                                <Setter Property="IsTabStop" Value="False" />
+                                <Setter TargetName="PART_EditableTextBox" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="contentPresenter" Property="Visibility" Value="Hidden" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
